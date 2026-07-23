@@ -47,6 +47,78 @@ jobs:
         name: aurion-publish
         path: publish
 
+  make-msi:
+    runs-on: windows-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v4
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: aurion-publish
+        path: publish
+
+    - name: Install WiX (choco)
+      run: |
+        choco install wixtoolset -y
+      shell: powershell
+
+    - name: Build MSI
+      run: |
+        powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\create_windows_installer.ps1
+
+    - name: Upload MSI
+      uses: actions/upload-artifact@v4
+      with:
+        name: aurion-msi
+        path: publish\*.msi
+
+  make-deb:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v4
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: aurion-publish
+        path: publish
+
+    - name: Install dpkg-deb
+      run: sudo apt-get update && sudo apt-get install -y dpkg-dev
+
+    - name: Build DEB
+      run: |
+        bash ./scripts/create_linux_package.sh linux-x64
+
+    - name: Upload DEB
+      uses: actions/upload-artifact@v4
+      with:
+        name: aurion-deb
+        path: publish/*.deb
+
+  make-dmg:
+    runs-on: macos-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v4
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: aurion-publish
+        path: publish
+
+    - name: Build DMG
+      run: |
+        # Create a DMG from the published osx-x64 folder
+        hdiutil create -volname Aurion -srcfolder publish/osx-x64 -ov -format UDZO Aurion.dmg
+
+    - name: Upload DMG
+      uses: actions/upload-artifact@v4
+      with:
+        name: aurion-dmg
+        path: Aurion.dmg
+
   docker-build:
     runs-on: ubuntu-latest
     needs: build
