@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Aurion": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

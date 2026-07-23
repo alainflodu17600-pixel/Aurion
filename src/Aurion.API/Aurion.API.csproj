@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+	<TargetFramework>net10.0</TargetFramework>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>Aurion.API</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+	<ProjectReference Include="..\Aurion.Core\Aurion.Core.csproj" />
+	<ProjectReference Include="..\Aurion.Security\Aurion.Security.csproj" />
+  </ItemGroup>
+</Project>

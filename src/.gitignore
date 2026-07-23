@@ -1,0 +1,26 @@
+bin/
+obj/
+.vscode/
+*.user
+*.suo
+*.cache
+*.log
+*.vs/
+*.db
+
+# Rider
+.idea/
+
+# Visual Studio
+.vs/
+**/bin/
+**/obj/
+
+# dotnet
+*.db
+
+# publish
+publish/
+
+# user secrets
+secrets.json

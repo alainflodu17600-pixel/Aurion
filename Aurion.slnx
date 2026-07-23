@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Aurion.API/Aurion.API.csproj" />
+    <Project Path="src/Aurion.Core/Aurion.Core.csproj" />
+    <Project Path="src/Aurion.Host/Aurion.Host.csproj" />
+    <Project Path="src/Aurion.Security/Aurion.Security.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Aurion.Tests/Aurion.Tests.csproj" />
+    <Project Path="tests/Aurion.Tests2/Aurion.Tests2.csproj" />
+  </Folder>
+  <Project Path="Aurion/Aurion.csproj" />
+</Solution>
